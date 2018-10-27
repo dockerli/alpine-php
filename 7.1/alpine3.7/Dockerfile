@@ -120,8 +120,6 @@ RUN set -xe \
 		CPPFLAGS="$PHP_CPPFLAGS" \
 		LDFLAGS="$PHP_LDFLAGS" \
 	&& docker-php-source extract \
-	&& wget -O /usr/src/php.tar.xz  https://secure.php.net/get/php-7.1.21.tar.xz/from/this/mirror && rm -rf /usr/src/php && mkdir /usr/src/php && tar -Jxf /usr/src/php.tar.xz -C /usr/src/php --strip-components=1 \
-		\
 	&& wget -O /usr/src/swoole.tar.gz https://github.com/swoole/swoole-src/archive/v1.9.4.tar.gz && tar -zxf /usr/src/swoole.tar.gz -C /usr/src/php/ext/ && mv /usr/src/php/ext/swoole-src-1.9.4 /usr/src/php/ext/swoole && rm -f /usr/src/swoole.tar.gz \
 		\
 	&& wget -O /usr/src/redis.tar.gz https://github.com/phpredis/phpredis/archive/4.1.1.tar.gz && tar -zxf /usr/src/redis.tar.gz -C /usr/src/php/ext/ && mv /usr/src/php/ext/phpredis-4.1.1 /usr/src/php/ext/redis && rm -f /usr/src/redis.tar.gz \

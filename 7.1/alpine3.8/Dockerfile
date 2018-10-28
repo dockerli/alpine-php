@@ -16,6 +16,7 @@ RUN set -xe \
     libxpm-dev \
     gettext-dev \
     icu-dev \
+    libmcrypt-dev \
     libxslt-dev \
     libwebp-dev \
     rabbitmq-c-dev \
@@ -30,7 +31,7 @@ RUN set -xe \
     \
     && wget -O /usr/src/amqp.tar.gz https://github.com/pdezwart/php-amqp/archive/v1.9.3.tar.gz \
     && mkdir /usr/src/php/ext/amqp && tar -zxf /usr/src/amqp.tar.gz -C /usr/src/php/ext/amqp --strip-components=1 \
-    && docker-php-ext-install amqp redis swoole opcache bcmath sockets exif zip gd gettext intl pcntl pdo_mysql shmop sysvsem xmlrpc xsl \
+    && docker-php-ext-install amqp redis swoole opcache bcmath sockets exif zip gd gettext intl mcrypt pcntl pdo_mysql shmop sysvsem xmlrpc xsl \
     && cd / \
     && docker-php-source delete \
     \

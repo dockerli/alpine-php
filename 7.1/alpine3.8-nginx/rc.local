@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/sbin/nginx &
+
+/usr/local/sbin/php-fpm &

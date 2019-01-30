@@ -1,6 +1,6 @@
 FROM php:7.2.11-fpm-alpine3.8
 
-RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.7/main" > /etc/apk/repositories && echo "http://mirrors.ustc.edu.cn/alpine/v3.7/community" >> /etc/apk/repositories
+RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.8/main" > /etc/apk/repositories && echo "http://mirrors.ustc.edu.cn/alpine/v3.8/community" >> /etc/apk/repositories
 
 RUN set -xe \
     && apk add --no-cache --virtual .build-deps \
@@ -30,7 +30,10 @@ RUN set -xe \
     \
     && wget -O /usr/src/amqp.tar.gz https://github.com/pdezwart/php-amqp/archive/v1.9.3.tar.gz \
     && mkdir /usr/src/php/ext/amqp && tar -zxf /usr/src/amqp.tar.gz -C /usr/src/php/ext/amqp --strip-components=1 \
-    && docker-php-ext-install amqp redis swoole opcache bcmath sockets exif zip gd gettext intl pcntl pdo_mysql shmop sysvsem xmlrpc xsl \
+    \
+    && docker-php-ext-configure gd --with-jpeg-dir \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install amqp redis swoole opcache bcmath sockets exif zip gettext intl pcntl pdo_mysql shmop sysvsem xmlrpc xsl \
     && cd / \
     && docker-php-source delete \
     \
